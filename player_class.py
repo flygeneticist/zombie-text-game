@@ -36,16 +36,16 @@ class Player():
       yield "Your inventory is empty! Go collect some stuff."
     else:
       for item in self.inv:
-        yield "{0}: {1}".format(item, self.inv[item])
+        yield "{0}: {1}".format(item.name, self.inv[item])
 
   def pickup(self, item):
     # checks if player has enough stamina to carry the item
-    if self.stamina > 0:
+    if (self.stamina >= item.weight and item.carry):
       if item in self.inv:
         self.inv[item] += 1 # already in inventory
       else:
         self.inv[item] = 1 #
-      return "You have added the {} to your inventory.".format(item)
+      return "You have added the {} to your inventory.".format(item.name)
     else:
       return "You are out of stamina and cannot add any more items."
 

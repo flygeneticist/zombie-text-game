@@ -1,5 +1,6 @@
 import unittest
 import player_class
+import item
 
 class PlayerClassTests(unittest.TestCase):
   '''Unit tests for the player class'''
@@ -36,16 +37,16 @@ class PlayerClassTests(unittest.TestCase):
 
   def test_success_when_add_item_to_inventory_with_enough_stamina(self):
     '''Player should get a success message if have enough (+1) stamina when adding an item.'''
-    self.assertEqual(player_class.Player("Test").pickup('bat'), "You have added the bat to your inventory.")
+    self.assertEqual(player_class.Player("Test").pickup(item.test_item_weapon), "You have added the Gun to your inventory.")
 
   def test_return_inventory_contents_when_valid(self):
     '''Player should get printout of inventory items and quantity when not empty.'''
     person = player_class.Player("Test Person")
-    person.pickup('Bat')
+    person.pickup(item.test_item_weapon)
     result = []
     for output in person.inventory():
       result.append(output)
-    self.assertEqual(result,["Bat: 1"])
+    self.assertEqual(result,["Gun: 1"])
 
   def test_get_player_basic_stats(self):
     '''Info command should return printout of player's vitals.'''
