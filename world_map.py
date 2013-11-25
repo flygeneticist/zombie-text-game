@@ -1,4 +1,4 @@
-class Map():
+class Map(object):
 
   scenes = {}
 
@@ -7,4 +7,3 @@ class Map():
       raise ValueError('Game must start with the scene in your hospital room.')
     else:
       pass
-
