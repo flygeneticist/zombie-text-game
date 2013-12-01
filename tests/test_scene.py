@@ -1,5 +1,5 @@
 import unittest
-import scene
+from modules import scene
 
 class SceneTests(unittest.TestCase):
 

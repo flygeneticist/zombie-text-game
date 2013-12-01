@@ -1,6 +1,6 @@
 import unittest
-import player_class
-import item
+from modules import player_class
+from modules import item
 
 class PlayerClassTests(unittest.TestCase):
   '''Unit tests for the player class'''
