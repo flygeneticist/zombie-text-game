@@ -15,5 +15,9 @@ class ItemBuilderHelperTests(unittest.TestCase):
     self.assertTrue(isinstance(test_item, item.Item))
     self.assertEqual([test_item.name, test_item.descrip, test_item.carry, test_item.weight, test_item.breakable, test_item.damage],["Gun","M4 Machine Gun", True, 10, False, 60])
 
+  def test_item_not_usable(self):
+    '''Item should return an message if not usable/valid action'''
+    self.assertRaises()
+
 if __name__ == '__main__':
   unittest.main()
