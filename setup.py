@@ -11,8 +11,8 @@ config = {
   'download_url': 'https://github.com/flygeneticist/zombie-text-game/archive/master.zip',
   'author_email': 'flygeneticist@gmail.com',
   'version': '0.1',
-  'install_requires': ['nose'],
-  'packages': ['NAME']
+  'install_requires': [''],
+  'packages': ['']
   }
 
 setup(**config)

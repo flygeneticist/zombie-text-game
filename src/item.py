@@ -12,7 +12,5 @@ class Item(object):
     self.breakable = breakable
     self.effect = effect
 
-
-
 # test items for unit testing purposes only
 test_item_weapon = Item(("Gun","M4 Machine Gun", True, 10, False, 60))
