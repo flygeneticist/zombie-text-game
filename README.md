@@ -1,5 +1,5 @@
 # Rise of the Dead : 
-## A zombie text-based game, inspired by the Walking Dead series.
+### A zombie text-based game, inspired by the Walking Dead series.
 
 ----
 
