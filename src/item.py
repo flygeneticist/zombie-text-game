@@ -1,16 +1,11 @@
-
-def item_builder(item_attributes):
-  return Item(item_attributes)
-
 class Item(object):
-  # takes in a tuple of item attributes and returns an item object
-  def __init__(self, (name, descrip, carry, weight, breakable, effect)):
-    self.name = name
-    self.descrip = descrip
-    self.carry = carry
-    self.weight = weight
-    self.breakable = breakable
-    self.effect = effect
+    # takes in a tuple of item attributes and returns an item object
+    # data should => (name, descrip, carry(bool), breakable(bool), health(int), weight(int)) 
+    def __init__(self, data):
+        self.name, self.descrip, self.carry, self.breakable, self.health, self.weight = data
 
-# test items for unit testing purposes only
-test_item_weapon = Item(("Gun","M4 Machine Gun", True, 10, False, 60))
+    def check_if_broken(self):
+        if self.health > 0:
+            return False
+        else:
+            return True
