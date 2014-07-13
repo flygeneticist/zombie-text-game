@@ -1,5 +1,3 @@
-from item import Item
-
 class Player(object):
     def __init__(self):
         self.name = input("Enter your character's name: ")
@@ -15,42 +13,34 @@ class Player(object):
         else:
             return False
 
-    def check_item_in_inventory(self, item_name):
-        if (item_name in self.inventory):
-            return True 
-        else:
+    def check_item_in_inventory(self, item):
+        try:
+            self.inventory[item.name]
+        except KeyError:
             return False
-
-    def check_item_quant(self, item_name):
-        if (check_item_in_inventory(item_name)):
-            return self.inventory[item_name]['quant'] 
         else:
-            return False
-
-    def less_x_item(self, item_name, x=1):
-        if self.check_item_in_inventory(item_name):
-            self.inventory[item_name]['quant'] -= x
             return True
+
+    def check_item_quant(self, item):
+        if self.check_item_in_inventory(item):
+            return self.inventory[item.name][1]
         else:
             return False
 
-    def plus_x_item(self, item_name, x=1):
-        if self.check_item_in_inventory(item_name):
-            self.inventory[item_name]['quant'] += x
-            return True
+    def drop_item(self, item):
+        if not (self.check_item_quant(item)):
+            return print("That item is not in your inventory to drop.")
+        elif self.check_item_quant(item) <= 1:
+            self.inventory.pop(item.name, 0)
         else:
-            return False
+            self.inventory[item_name][1] -= x
+        return print("You have added {0} {1} to your inventory.").format(x, item.name)
 
-    def drop_inventory_item(self, item):
-        if self.check_item_quant(item_name) <= 0: 
-            self.inventory.remove(item_name)
-            return True
+    def add_item(self, item, x=1):
+        if not (self.check_item_quant(item)):
+            self.inventory[item.name] = [item, x]
+        elif self.check_item_quant(item) >= 0:
+            self.inventory[item_name][1] += x
         else:
-            return False
-
-    def add_inventory_item(self, item, x=1):
-        if self.check_item_quant(item['name']) <= 0: 
-            self.inventory[item['name']] = [item, x]
-            return True
-        else:
-            return False
+            return print("You cannot add that.")
+        return print("You have added {0} {1} to your inventory.").format(x, item.name)

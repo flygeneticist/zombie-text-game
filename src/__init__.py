@@ -4,7 +4,7 @@ from engine import Engine
 e = Engine()
 
 # quick lookup dict for all valid player input actions linked back to the engine function
-valid_actions = {"look":e.look,"move":e.move,"take":e.take,"drop":e.drop}
+valid_actions = {"look":e.look,"move":e.move,"take":e.take,"drop":e.drop, "find":e.find}
 
 while (True):
     # get player's action input

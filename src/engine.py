@@ -1,6 +1,7 @@
 from player import Player
 from world import Map
 from scene import Scene
+from item import Item
 
 class Engine(object):
     def __init__(self):
@@ -51,7 +52,7 @@ class Engine(object):
         try:
             imagery = self.current_scene.layout[direction]['look']
         except KeyError:
-            imagery = "That is not a valid direction!"
+            imagery = "That is not a valid direction."
         else:
             if imagery == None: 
                 imagery = "There is nothing to see in that direction."
@@ -64,11 +65,28 @@ class Engine(object):
             destination = None
         return self.serve(destination)
 
-    def take(self, item):
-        return print("You picked up a {}".format(self.current_scene.items[item]))
+    def find(self, command):
+        if command == "items":
+            l = self.current_scene.items
+            if l == {}:
+                return print("There are no items here.")
+            else:
+                print("The following items are in the room:")
+                for k,v in l.items(): 
+                    print(l[k].name)
+        else:
+            return print("Not a valid command")
 
-    def drop(self, item):
-        return print("You dropped up a {}".format(self.current_scene.items[item]))
+    def take(self, item_name):
+        item_name = item_name.strip().lower()
+        item = self.current_scene.items[item_name]
+        self.player.add_item(item)
+        self.current_scene.remove_item(item_name)
+
+    def drop(self, item_name):
+        item_name = item_name.strip().lower()
+        item = self.player.drop_item(item_name)
+        self.current_scene.add_item(item)
 
     def serve(self, scene): 
         if scene == "death":

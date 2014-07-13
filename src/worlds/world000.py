@@ -1,10 +1,11 @@
 # File Name: world000
 # World Name: 3rd Floor of Hospital
-# Description: This is the starting area for the game. In this area, the player should be able to learn to pickup items and find medicine for their wounds.
+# Description: This is the starting area for the game. 
+#              In this area, the player will learn to pickup/use items and find medicine for their wounds.
 
 {
  's0':Scene('Your-Hospital-Room-3F', 
-            'creepy room with broken equipment.',
+            'creepy room with broken equipment. A sharp looking stick lies on the ground nearby.',
             {   'north':{   'move':None,
                             'look':'A grimy window, covered in dirt...or is that dried blood, you don\'t look too closely.\nThe cityscape outside is full of rubble, smoke, and erily quiet.'},
                 'south':{   'move':'s1',
@@ -13,7 +14,7 @@
                             'look':None},
                 'west':{    'move':None,
                             'look':None}},
-            {'stick':'a heavy, sharp stick'},
+            {'stick':Item(('stick', 'a heavy, sharp stick', 1, 0.01, 1, 0.25, 1, 1))},
             {}
         )
 ,'s1':Scene('West-Hallway-3F', 
@@ -40,7 +41,7 @@
                 'west':{    'move':None,
                             'look':None}},
             {},
-            {'Zombie'}
+            {}
         )
 ,'s3':Scene('Reception-Desk-3F', 
             'nurses\' station. Charts litter the nurses\' desk, a body is slumped over in a chair.',
@@ -52,7 +53,7 @@
                             'look':'A sign for the elevator hangs crookedly from the ceiling.'},
                 'west':{    'move':'s1',
                             'look':'A lone figure can be seen moving in the distance down the hall.'}},
-            {},
+            {'medicine':Item(('weak medicine', 'small dose of basic anti-bacterial medicine.', 1, 1, 1, 0.25, 1, 1))},
             {}
         )
 ,'s4':Scene('Waiting-Area-3F', 

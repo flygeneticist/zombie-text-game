@@ -11,3 +11,13 @@ class Scene(object):
 
     def open_scene(self):
         return (self.description, self.npc, self.items)
+
+    def remove_item(self, item_name):
+        if item_name in self.items:
+            item = self.items[item_name]
+            self.items.pop(item_name, 0)
+        else:
+            return print("Not a valid item to take.")
+
+    def add_item(self, item_name):
+        pass
