@@ -4,7 +4,7 @@ from engine import Engine
 e = Engine()
 
 # quick lookup dict for all valid player input actions linked back to the engine function
-valid_actions = {"look":e.look,"move":e.move,"take":e.take,"drop":e.drop, "find":e.find}
+valid_actions = {"look":e.look,"move":e.move,"take":e.take,"drop":e.drop, "find":e.find, "check":e.check_inv}
 
 while (True):
     # get player's action input
@@ -18,7 +18,8 @@ while (True):
                 'look <north, south, east, west>\n',
                 'move <north, south, east, west>\n',
                 'take <item name>\n',
-                'drop <item name>\n'
+                'drop <item name>\n',
+                'check inv\n'
             )
     else:
         print("Not a valid action!")

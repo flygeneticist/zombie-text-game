@@ -9,6 +9,7 @@ class Engine(object):
         self.start_game()
 
     def start_game(self):
+        print("\n")
         print("     _______ _________ _______  _______    _______  _______      \n")
         print("    (  ____ )\__   __/(  ____ \(  ____ \  (  ___  )(  ____ \     \n")
         print("    | (    )|   ) (   | (    \/| (    \/  | (   ) || (    \/     \n")
@@ -17,7 +18,9 @@ class Engine(object):
         print("    | (\ (      | |         ) || (        | |   | || (           \n")
         print("    | ) \ \_____) (___/\____) || (____/\  | (___) || )           \n")
         print("    |/   \__/\_______/\_______)(_______/  (_______)|/            \n")
-        print("                                                                 \n")
+        print("\n")
+        print("\n")
+        print("\n")
         print("_________          _______    ______   _______  _______  ______  \n")
         print("\__   __/|\     /|(  ____ \  (  __  \ (  ____ \(  ___  )(  __  \ \n")
         print("   ) (   | )   ( || (    \/  | (  \  )| (    \/| (   ) || (  \  )\n")
@@ -27,11 +30,11 @@ class Engine(object):
         print("   | |   | )   ( || (____/\  | (__/  )| (____/\| )   ( || (__/  )\n")
         print("   )_(   |/     \|(_______/  (______/ (_______/|/     \|(______/ \n")
         print("\n")
+        print("\n")
         print("~"*100)
         print("This game will challenge you to escape from a\nhospital and resuce your family! Good luck!!")
         print("~"*100 + '\n')
 
-        # setup key objects and settings for starting the game
         self.player = Player() # create the main player object
         self.load_area('./worlds/world000.py') # first world map
         
@@ -77,16 +80,28 @@ class Engine(object):
         else:
             return print("Not a valid command")
 
+    def check_inv(self, command="inv"):
+        return self.player.check_inv()
+
     def take(self, item_name):
         item_name = item_name.strip().lower()
-        item = self.current_scene.items[item_name]
-        self.player.add_item(item)
-        self.current_scene.remove_item(item_name)
+        try:
+            item = self.current_scene.items[item_name]
+        except KeyError:
+            return print("{} is not an item that can be taken.".format(item_name))
+        else:
+            self.player.add_item(item)
+            self.current_scene.remove_item(item_name)
 
     def drop(self, item_name):
         item_name = item_name.strip().lower()
-        item = self.player.drop_item(item_name)
-        self.current_scene.add_item(item)
+        try:
+            item = self.player.inventory[item_name][0]
+        except KeyError:
+            return print("{} is not an item in your inventory.".format(item_name))
+        else:
+            item = self.player.drop_item(item)
+            self.current_scene.add_item(item)
 
     def serve(self, scene): 
         if scene == "death":

@@ -27,14 +27,14 @@ class Player(object):
         else:
             return False
 
-    def drop_item(self, item):
+    def drop_item(self, item, x=1):
         if not (self.check_item_quant(item)):
             return print("That item is not in your inventory to drop.")
         elif self.check_item_quant(item) <= 1:
             self.inventory.pop(item.name, 0)
         else:
             self.inventory[item_name][1] -= x
-        return print("You have added {0} {1} to your inventory.").format(x, item.name)
+        return print("You have dropped {0} {1} from your inventory.".format(x, item.name))
 
     def add_item(self, item, x=1):
         if not (self.check_item_quant(item)):
@@ -43,4 +43,12 @@ class Player(object):
             self.inventory[item_name][1] += x
         else:
             return print("You cannot add that.")
-        return print("You have added {0} {1} to your inventory.").format(x, item.name)
+        return print("You have added {0} {1} to your inventory.".format(x, item.name))
+
+    def check_inv(self):
+        if len(self.inventory) == 0:
+            return print("There is naught but some mites of dust in that there bag o yours.")
+        else:
+            print("The following items are in your inventory:")
+            for k,v in self.inventory.items():
+                print("\t", k, "(", v[1], ")")
