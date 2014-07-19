@@ -11,12 +11,13 @@ You’ve woken up in a hospital bed after being involved in a horrific accident 
 Classic text-based game controls allow the character to interact with their environment by "look", "move", "take", and "drop" commands. 
 
 ### Future work:
-0. An inventory system and staminia based carry capacity for players.
+0. ~~An inventory system and staminia based carry capacity for players.~~
 1. A combat system to fight zombies and other enemies.
 2. Interactions with friendly / neutral NPCs.
 3. Suggest a new feature you'd like to see or submit a pull request. :)
 
 
 ### Change Log:
+* v0.2.1 - Added an inventory system with checks on player stamina vs inventory weight and if item is carriable or droppable.
 * v0.2 - A complete overhaul was done to design. Basic gameplay functions now!
 * v0.1 - Initial version of game. Failed to function for even basic features due to design flaws. Project sat untouched for several months.
