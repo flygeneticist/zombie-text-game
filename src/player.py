@@ -1,6 +1,7 @@
 class Player(object):
     def __init__(self):
         self.name = input("Enter your character's name: ")
+        print("\n") # break line to space out first scene's opening text
         self.health = 100
         self.maxhealth = 100
         self.stamina = 100
@@ -38,7 +39,8 @@ class Player(object):
                 self.inventory[item_name][1] -= x
                 inv_weight_update()
             self.inv_weight_update()
-            return print("You have dropped {0} {1} from your inventory.".format(x, item.name))
+            print("You have dropped {0} {1} from your inventory.".format(x, item.name))
+            return item
         else:
             return print("You cannot drop special or quest items.")
 

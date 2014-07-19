@@ -51,6 +51,20 @@ class Engine(object):
         self.world_map = Map(eval(open(area_layout).read()))
         self.serve('s0') # serve up the new starting position
 
+    def serve(self, scene): 
+        if scene == "death":
+            self.end_game()
+        elif scene == "win":
+            self.win_game()
+        elif scene == None:
+            return print("You cannot move there.")
+        elif scene.split('_')[0] == "map":
+            self.load_area('worlds/world' + scene.split('_')[1] + '.py')
+        else:
+            self.current_scene = self.world_map.next_scene(scene)
+            return print(self.current_scene.description)
+
+    # Player command functions will serve as the interface for the player and the rest of the game.
     def look(self, direction):
         try:
             imagery = self.current_scene.layout[direction]['look']
@@ -70,21 +84,17 @@ class Engine(object):
 
     def find(self, command):
         if command == "items":
-            l = self.current_scene.items
-            if l == {}:
-                return print("There are no items here.")
-            else:
-                print("The following items are in the room:")
-                for k,v in l.items(): 
-                    print(l[k].name)
+            self.current_scene.list_items()
+        elif command == "npc":
+            return print("No NPCs found.")
         else:
-            return print("Not a valid command")
+            return print("Not a valid command.")
 
     def check_inv(self, command="inv"):
         return self.player.check_inv()
 
-    def take(self, item_name):
-        item_name = item_name.strip().lower()
+    def take(self, command):
+        item_name = command.strip().lower()
         try:
             item = self.current_scene.items[item_name]
         except KeyError:
@@ -93,8 +103,8 @@ class Engine(object):
             self.player.add_item(item)
             self.current_scene.remove_item(item_name)
 
-    def drop(self, item_name):
-        item_name = item_name.strip().lower()
+    def drop(self, command):
+        item_name = command.strip().lower()
         try:
             item = self.player.inventory[item_name][0]
         except KeyError:
@@ -103,15 +113,5 @@ class Engine(object):
             item = self.player.drop_item(item)
             self.current_scene.add_item(item)
 
-    def serve(self, scene): 
-        if scene == "death":
-            self.end_game()
-        elif scene == "win":
-            self.win_game()
-        elif scene == None:
-            return print("You cannot move there.")
-        elif scene.split('_')[0] == "map":
-            self.load_area('worlds/world' + scene.split('_')[1] + '.py')
-        else:
-            self.current_scene = self.world_map.next_scene(scene)
-            return print(self.current_scene.description)
+    def examine(self, command):
+        return self.current_scene.examine_item(command)

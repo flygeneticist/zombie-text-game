@@ -4,7 +4,7 @@ from engine import Engine
 e = Engine()
 
 # quick lookup dict for all valid player input actions linked back to the engine function
-valid_actions = {"look":e.look,"move":e.move,"take":e.take,"drop":e.drop, "find":e.find, "check":e.check_inv}
+valid_actions = {"look":e.look,"move":e.move,"take":e.take,"drop":e.drop, "find":e.find, "check":e.check_inv, "examine":e.examine}
 
 while (True):
     # get player's action input
@@ -15,11 +15,13 @@ while (True):
         valid_actions[action[0]](action[1])
     elif (action[0] == 'help'):
         print('The following are valid commands:\n',
-                'look <north, south, east, west>\n',
-                'move <north, south, east, west>\n',
-                'take <item name>\n',
-                'drop <item name>\n',
-                'check inv\n'
+                'look <north, south, east, west> => Examines a given direction.\n',
+                'move <north, south, east, west> => Moves your character in a given direction.\n',
+                'find <items, npc>               => Finds all items or NPCs in your current location.\n',
+                'examine <item name>             => Find out more about an item(description, weight, attack damage).\n',
+                'take <item name>                => Picks up a item and put it in your inventory.\n',
+                'drop <item name>                => Drops an item from your inventory.\n',
+                'check inv                       => Gets a list of all items currently in your inventory.\n'
             )
     else:
         print("Not a valid action!")

@@ -9,9 +9,6 @@ class Scene(object):
         self.items = items
         self.npc = npc
 
-    def open_scene(self):
-        return (self.description, self.npc, self.items)
-
     def remove_item(self, item_name):
         if item_name in self.items:
             item = self.items[item_name]
@@ -19,5 +16,21 @@ class Scene(object):
         else:
             return print("Not a valid item to take.")
 
-    def add_item(self, item_name):
-        pass
+    def add_item(self, item):
+        self.items[item.name] = item
+
+    def list_items(self):
+        if self.items == {}:
+            return print("There are no items here.")
+        else:
+            print("The following items are here:")
+            for k,v in self.items.items(): 
+                print(self.items[k].name)
+
+    def examine_item(self, item_name):
+        try:
+            item = self.items[item_name]
+        except KeyError:
+            return print("Not a valid item.")
+        else:
+            return print("{0}.\nWeight: {1}\nAttack Damage: {2}".format(item.description, item.weight, item.attack_dmg))
