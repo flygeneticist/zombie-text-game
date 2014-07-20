@@ -4,7 +4,10 @@ from engine import Engine
 e = Engine()
 
 # quick lookup dict for all valid player input actions linked back to the engine function
-valid_actions = {"look":e.look,"move":e.move,"take":e.take,"drop":e.drop, "find":e.find, "check":e.check_inv, "examine":e.examine}
+valid_actions = {   "look":e.look,"move":e.move,"take":e.take,"drop":e.drop, 
+                    "find":e.find, "check":e.check_inv, "examine":e.examine,
+                    "save":e.save_game, "exit":e.exit_game
+                }
 
 while (True):
     # get player's action input
@@ -21,7 +24,9 @@ while (True):
                 'examine <item name>             => Find out more about an item(description, weight, attack damage).\n',
                 'take <item name>                => Picks up a item and put it in your inventory.\n',
                 'drop <item name>                => Drops an item from your inventory.\n',
-                'check inv                       => Gets a list of all items currently in your inventory.\n'
+                'check inv                       => Gets a list of all items currently in your inventory.\n',
+                'save <name(optional)>           => Saves your current game state for later.\n',
+                'exit                            => Exits the game.\n'
             )
     else:
         print("Not a valid action!")
