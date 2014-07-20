@@ -14,10 +14,12 @@ Classic text-based game controls allow the character to interact with their envi
 0. ~~An inventory system and staminia based carry capacity for players.~~
 1. A combat system to fight zombies and other enemies.
 2. Interactions with friendly / neutral NPCs.
-3. Suggest a new feature you'd like to see or submit a pull request. :)
+3. ~~Save / Load games.~~
+4. Suggest a new feature you'd like to see or submit a pull request. :)
 
 
 ### Change Log:
+* v0.3 - Added the ability to examine an object to find out more about it. Refactored game engine. Added save/load functionality. Fixed bug that started player in the wrong room when changing maps.
 * v0.2.1 - Added an inventory system with checks on player stamina vs inventory weight and if item is carriable or droppable.
 * v0.2 - A complete overhaul was done to design. Basic gameplay functions now!
 * v0.1 - Initial version of game. Failed to function for even basic features due to design flaws. Project sat untouched for several months.
