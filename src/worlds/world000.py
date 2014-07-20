@@ -62,7 +62,7 @@
                             'look':'A smear of blood streaks the wall in front of an out-of-order elevator. A bony hand gropes from the gap in the doors.\nA low, gutteral moaning sound can be heard coming from within.'},
                 'south':{   'move':None,
                             'look':None},
-                'east':{    'move':'map_001',
+                'east':{    'move':'map_001_s0',
                             'look':'A door to the starwell lie in front of you.'},
                 'west':{    'move':'s3',
                             'look':'The nurses\' station lies down the hall.'}},

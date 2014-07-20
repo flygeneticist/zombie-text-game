@@ -1,7 +1,7 @@
-from player import Player
-from world import Map
-from scene import Scene
-from item import Item
+from src.player import Player
+from src.world import Map
+from src.scene import Scene
+from src.item import Item
 
 class Engine(object):
     def __init__(self):
@@ -57,9 +57,10 @@ class Engine(object):
         from a save folder of the same name'''
         pass
 
+
     def start_new_game(self):
         self.player = Player() # create the main player object
-        self.load_area('./worlds/world000.py') # first world map
+        self.load_area('./worlds/world000.py', 's0') # first world map
         
 
     def end_game(self):
@@ -72,13 +73,13 @@ class Engine(object):
         exit()
 
 
-    def load_area(self, area_layout):
+    def load_area(self, area_layout, start_scene):
         del self.world_map # free up memory by releasing old map/scene data
         self.world_map = Map(eval(open(area_layout).read()))
-        self.serve('s0') # serve up the new starting position
+        self.serve(start_scene) # serve up the new starting position
 
 
-    def serve(self, scene, scene2=""): 
+    def serve(self, scene): 
         if scene == "death":
             self.end_game()
         elif scene == "win":
@@ -86,9 +87,8 @@ class Engine(object):
         elif scene == None:
             return print("You cannot move there.")
         elif scene.split('_')[0] == "map":
-            self.load_area('worlds/world' + scene.split('_')[1] + '.py')
-            self.current_scene = self.world_map.next_scene(scene2)
-            return print(self.current_scene.description)
+            data = scene.split('_')
+            self.load_area('worlds/world' + data[1] + '.py', data[2])
         else:
             self.current_scene = self.world_map.next_scene(scene)
             return print(self.current_scene.description)
@@ -154,8 +154,8 @@ class Engine(object):
         return self.current_scene.examine_item(command)
 
 
-    def save_game(self, name=self.player.name):
-        '''Copies all game data files in TEMP folder into a saved game folder.'''
+    def save_game(self):
+        '''Copies all game data files in TEMP folder into a saved game folder, based on player\'s name'''
         save = input("Are you sure you want to overwrite the previously saved game? y/n: ").strip().lower()
         if save == 'y':
             # do some file shuffling here.....

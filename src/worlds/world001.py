@@ -11,7 +11,7 @@
                             'look':None},
                 'east':{    'move':None,
                             'look':None},
-                'west':{    'move':'map_000',
+                'west':{    'move':'map_000_s4',
                             'look':'A stairwell leading up to the third floor.'}},
             {'syringe':Item(('syringe', 'A solid looking, bone marrow extraction needle.', 1, 0.4, 1, 0.5, 1, 1, 20))},
             {}

@@ -1,4 +1,4 @@
-from item import Item
+from src.item import Item
 # from player import Npc
 
 class Scene(object):
