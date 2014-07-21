@@ -54,8 +54,12 @@ def start_new_game():
 
 def load_saved_game(name): 
     '''Loads pickled game engine from the saves folder. Load the last map and scene.'''
-    with open(r"./saves/"+name+".pickle", "rb") as input_file:
-        return pickle.load(input_file)
+    try:
+        with open(r"./saves/"+name+".pickle", "rb") as input_file:
+            return pickle.load(input_file)
+    except:
+        print('Oops! Something went wrong! Try checking the spelling of your character\'s name.\n')
+        pick_loader()
 
 
 def save_game():
@@ -97,7 +101,7 @@ e = pick_loader()
 # quick lookup dict for all valid player input actions linked back to the engine function
 valid_actions = {   "look":e.look,"move":e.move,"take":e.take,"drop":e.drop, 
                     "find":e.find, "check":e.check_inv, "examine":e.examine,
-                    "save":save_game, "exit":exit_game
+                    "save":save_game, "exit":exit_game, "stats":e.stats_check
                 }
 
 while (True):
@@ -108,7 +112,7 @@ while (True):
     if (action[0] in valid_actions) and (len(action) == 2):
         valid_actions[action[0]](action[1])
     # chekc if action is save or exit commands in don't use an arg
-    elif (action[0] == 'save') or (action[0] == 'exit'):
+    elif (action[0] == 'save') or (action[0] == 'exit') or (action[0] == 'stats'):
         valid_actions[action[0]]()
     elif (action[0] == 'help'):
         print('The following are valid commands:\n',
@@ -119,6 +123,7 @@ while (True):
                 'take <item name>                => Picks up a item and put it in your inventory.\n',
                 'drop <item name>                => Drops an item from your inventory.\n',
                 'check inv                       => Gets a list of all items currently in your inventory.\n',
+                'stats                           => Returns your current health and stamina.\n',
                 'save                            => Saves your current game state.\n',
                 'exit                            => Exits the game.\n'
             )

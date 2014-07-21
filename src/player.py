@@ -9,6 +9,9 @@ class Player(object):
         self.inv_weight = 0
         self.inventory = {} #setup => {item_name : [obj , quant]}
 
+    def stats_check(self):
+        return (str(self.health)+'/'+str(self.maxhealth), str(self.stamina)+'/'+str(self.maxstamina))
+
     def check_if_dead(self):
         if health > 0:
             return True

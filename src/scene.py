@@ -33,4 +33,5 @@ class Scene(object):
         except KeyError:
             return print("Not a valid item.")
         else:
-            return print("{0}.\nWeight: {1}\nAttack Damage: {2}".format(item.description, item.weight, item.attack_dmg))
+            examined_item = item.examine_info()
+            return print("{0}\nWeight: {1}\nAttack Damage: {2}".format(examined_item[0], examined_item[1], examined_item[2]))
