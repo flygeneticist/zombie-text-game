@@ -99,3 +99,4 @@ class Engine(object):
     def stats_check(self):
         player_stats = self.player.stats_check()
         return print("Health: {0}\nStamina: {1}".format(player_stats[0], player_stats[1]))
+ 
